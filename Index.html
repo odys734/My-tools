@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Gaming Tools - FF Headshot Sensitivity & Stylish Font Generator</title>
+    <meta name="description" content="Get the best Free Fire auto headshot sensitivity settings for all mobile devices and generate cool, stylish fonts for your gaming nicknames or Instagram bio.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">🔥 NexusTools</div>
+        <p>Trending Pro Tools for Gamers & Content Creators</p>
+    </header>
+
+    <div class="main-container">
+        
+        <section class="tool-card" id="ff-tool">
+            <h2>🎮 FF Auto Headshot Sensitivity Finder</h2>
+            <p class="tool-desc">Select your mobile brand to get the ultimate one-tap headshot configurations!</p>
+            
+            <div class="input-group">
+                <select id="deviceBrand">
+                    <option value="">-- Select Your Mobile Brand --</option>
+                    <option value="redmi">Redmi / Xiaomi / Poco</option>
+                    <option value="realme">Realme / Oppo / Vivo</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="iphone">iPhone (iOS)</option>
+                    <option value="lowend">Low-End Device (2GB / 3GB RAM)</option>
+                </select>
+                <button class="btn" onclick="generateSensitivity()">Get Settings</button>
+            </div>
+
+            <div id="sensiResult" class="result-box hidden">
+                <h3>Recommended Settings (Updated 2026):</h3>
+                <div class="sensi-item">🔴 General: <span id="genVal">100</span></div>
+                <div class="sensi-item">🔴 Red Dot: <span id="redVal">95</span></div>
+                <div class="sensi-item">🔴 2x Scope: <span id="twoVal">90</span></div>
+                <div class="sensi-item">🔴 4x Scope: <span id="fourVal">85</span></div>
+                <p class="tip">*Pro Tip: Set your custom HUD Fire Button size between 45% and 50% for smooth drag shots.</p>
+            </div>
+        </section>
+
+        <section class="tool-card" id="font-tool">
+            <h2>✨ Stylish Font & Nickname Generator</h2>
+            <p class="tool-desc">Type your name below to generate cool copy-paste fonts for your Instagram Bio or FF Nickname:</p>
+            
+            <input type="text" id="nameInput" placeholder="Type your name here..." oninput="generateFonts()">
+
+            <div id="fontResults" class="font-list">
+                </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nexus Tools Hub. Designed for Gamers & Creators.</p>
+    </footer>
+
+    <script>
+        // 1. Free Fire Sensitivity Logic
+        function generateSensitivity() {
+            let brand = document.getElementById("deviceBrand").value;
+            let resultDiv = document.getElementById("sensiResult");
+            
+            if(!brand) {
+                alert("Please select your mobile brand first!");
+                return;
+            }
+
+            resultDiv.classList.remove("hidden");
+
+            if(brand === "redmi") {
+                setSensi(98, 92, 95, 88);
+            } else if(brand === "realme") {
+                setSensi(100, 95, 92, 90);
+            } else if(brand === "samsung") {
+                setSensi(95, 88, 85, 80);
+            } else if(brand === "iphone") {
+                setSensi(90, 85, 88, 82);
+            } else {
+                setSensi(100, 100, 95, 95); // Low-end devices
+            }
+        }
+
+        function setSensi(g, r, t, f) {
+            document.getElementById("genVal").innerText = g;
+            document.getElementById("redVal").innerText = r;
+            document.getElementById("twoVal").innerText = t;
+            document.getElementById("fourVal").innerText = f;
+        }
+
+        // 2. Stylish Font Logic
+        function generateFonts() {
+            let txt = document.getElementById("nameInput").value;
+            let container = document.getElementById("fontResults");
+            container.innerHTML = "";
+
+            if(txt.trim() === "") return;
+
+            // Different stylized font arrays
+            let styles = [
+                `꧁༺ ${txt} ༻꧂`,
+                `🅵🅾🅽🆃: ${txt}`,
+                ` 𝔗𝔥𝔢  King: ${txt}`,
+                `☠️🔥 ${txt} 🔥☠️`,
+                `ⓃⒾⒸⓀ: ${txt}`,
+                `★彡 [${txt}] 彡★`,
+                `⚡ ${txt} ⚡`
+            ];
+
+            styles.forEach(style => {
+                let div = document.createElement("div");
+                div.className = "font-item";
+                div.innerHTML = `<span>${style}</span> <button class="copy-btn" onclick="copyText('${style}')">Copy</button>`;
+                container.appendChild(div);
+            });
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert("Copied to clipboard: " + text);
+        }
+    </script>
+</body>
+</html>
