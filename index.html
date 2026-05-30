@@ -3,125 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Gaming Tools - FF Headshot Sensitivity & Stylish Font Generator</title>
-    <meta name="description" content="Get the best Free Fire auto headshot sensitivity settings for all mobile devices and generate cool, stylish fonts for your gaming nicknames or Instagram bio.">
+    <title>Nexus Hub - 7-in-1 Premium Creator & Gaming Tools</title>
+    <meta name="description" content="Best Free Fire Headshot Sensitivity, AI Thumbnail Title Generator, VIP Instagram Bios, Stylish Font Generator, PNG Converter, and QR Code Generator.">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
-    <header>
-        <div class="logo">🔥 NexusTools</div>
-        <p>Trending Pro Tools for Gamers & Content Creators</p>
-    </header>
+    <div class="bg-glow glowing-1"></div>
+    <div class="bg-glow glowing-2"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><i class="fa-solid fa-cubes"></i> Nexus<span>Hub</span></div>
+            <div class="tagline">7-in-1 Ultimate Web Toolkit</div>
+        </div>
+    </nav>
 
     <div class="main-container">
         
-        <section class="tool-card" id="ff-tool">
-            <h2>🎮 FF Auto Headshot Sensitivity Finder</h2>
-            <p class="tool-desc">Select your mobile brand to get the ultimate one-tap headshot configurations!</p>
-            
+        <section class="tool-card animate-fade">
+            <div class="card-badge">GAMING</div>
+            <h2><i class="fa-solid fa-gamepad"></i> FF Auto Headshot Sensitivity Finder</h2>
+            <p class="tool-desc">Get the ultimate one-tap drag headshot configurations for your device.</p>
             <div class="input-group">
                 <select id="deviceBrand">
-                    <option value="">-- Select Your Mobile Brand --</option>
+                    <option value="">-- Choose Your Device --</option>
                     <option value="redmi">Redmi / Xiaomi / Poco</option>
                     <option value="realme">Realme / Oppo / Vivo</option>
-                    <option value="samsung">Samsung</option>
-                    <option value="iphone">iPhone (iOS)</option>
-                    <option value="lowend">Low-End Device (2GB / 3GB RAM)</option>
+                    <option value="samsung">Samsung Galaxy</option>
+                    <option value="iphone">iPhone (iOS Pro)</option>
+                    <option value="lowend">Budget Device (2GB-4GB RAM)</option>
                 </select>
-                <button class="btn" onclick="generateSensitivity()">Get Settings</button>
+                <button class="btn btn-glow" onclick="generateSensitivity()"><i class="fa-solid fa-wand-magic-sparkles"></i> Optimize Sensi</button>
             </div>
-
             <div id="sensiResult" class="result-box hidden">
-                <h3>Recommended Settings (Updated 2026):</h3>
-                <div class="sensi-item">🔴 General: <span id="genVal">100</span></div>
-                <div class="sensi-item">🔴 Red Dot: <span id="redVal">95</span></div>
-                <div class="sensi-item">🔴 2x Scope: <span id="twoVal">90</span></div>
-                <div class="sensi-item">🔴 4x Scope: <span id="fourVal">85</span></div>
-                <p class="tip">*Pro Tip: Set your custom HUD Fire Button size between 45% and 50% for smooth drag shots.</p>
+                <h3><i class="fa-solid fa-crosshairs"></i> Recommended Settings:</h3>
+                <div class="sensi-grid">
+                    <div class="sensi-item"><span>General</span> <strong id="genVal">100%</strong></div>
+                    <div class="sensi-item"><span>Red Dot</span> <strong id="redVal">95%</strong></div>
+                    <div class="sensi-item"><span>2x Scope</span> <strong id="twoVal">90%</strong></div>
+                    <div class="sensi-item"><span>4x Scope</span> <strong id="fourVal">85%</strong></div>
+                </div>
             </div>
         </section>
 
-        <section class="tool-card" id="font-tool">
-            <h2>✨ Stylish Font & Nickname Generator</h2>
-            <p class="tool-desc">Type your name below to generate cool copy-paste fonts for your Instagram Bio or FF Nickname:</p>
-            
-            <input type="text" id="nameInput" placeholder="Type your name here..." oninput="generateFonts()">
+        <section class="tool-card animate-fade">
+            <div class="card-badge">TRAFFIC MONSTER</div>
+            <h2><i class="fa-solid fa-image"></i> PNG Image Converter & Compressor</h2>
+            <p class="tool-desc">Convert any JPG/WebP image to PNG format and compress its size instantly.</p>
+            <input type="file" id="imageInput" accept="image/*" style="margin-bottom: 15px;">
+            <button class="btn btn-glow" onclick="processImage()"><i class="fa-solid fa-file-transform"></i> Convert & Download PNG</button>
+            <div id="imagePreviewContainer" class="hidden" style="margin-top: 15px; text-align: center;">
+                <p style="color: var(--accent-blue); margin-bottom: 5px;">Preview:</p>
+                <img id="imagePreview" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
+            </div>
+        </section>
 
-            <div id="fontResults" class="font-list">
+        <section class="tool-card animate-fade">
+            <div class="card-badge">YOUTUBE</div>
+            <h2><i class="fa-solid fa-chart-line"></i> AI Thumbnail Title Generator</h2>
+            <p class="tool-desc">Enter your video topic to generate viral, high-CTR titles for YouTube SEO.</p>
+            <div class="input-container">
+                <i class="fa-brands fa-youtube input-icon"></i>
+                <input type="text" id="topicInput" placeholder="e.g., Minecraft Redstone, Free Fire Gameplay...">
+            </div>
+            <button class="btn" onclick="generateTitles()"><i class="fa-solid fa-brain"></i> Generate Viral Titles</button>
+            <div id="titleResults" class="font-list"></div>
+        </section>
+
+        <section class="tool-card animate-fade">
+            <div class="card-badge">BIO</div>
+            <h2><i class="fa-brands fa-instagram"></i> VIP Attitude & Gaming Bios</h2>
+            <p class="tool-desc">One-click copy premium, stylish, and high-attitude bios for Instagram.</p>
+            <div class="bio-list">
+                <div class="bio-item">
+                    <p>👑 VIP Account Key 👑<br>🔥 Level Max Attitude 😎<br>🎧 Lo-Fi & Beats Lover 🎵<br>🎮 Pure Gaming Blood ⚔️</p>
+                    <button class="copy-btn-mini" onclick="copyText(this.previousElementSibling.innerHTML.replace(/<br>/g, '\n'))"><i class="fa-regular fa-copy"></i> Copy</button>
                 </div>
+                <div class="bio-item">
+                    <p>🎮 Nexus Gamer 🎮<br>🚫 No Love, Only Hustle 💸<br>📸 Content Creator 🎬<br>🛠️ Code & Automation Freak 🐍</p>
+                    <button class="copy-btn-mini" onclick="copyText(this.previousElementSibling.innerHTML.replace(/<br>/g, '\n'))"><i class="fa-regular fa-copy"></i> Copy</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="tool-card animate-fade">
+            <div class="card-badge">FONTS</div>
+            <h2><i class="fa-solid fa-font"></i> Stylish Font & Nickname Generator</h2>
+            <p class="tool-desc">Convert plain text into unique, fancy styles for nicknames and bios.</p>
+            <div class="input-container">
+                <i class="fa-solid fa-keyboard input-icon"></i>
+                <input type="text" id="nameInput" placeholder="Enter name or text..." oninput="generateFonts()">
+            </div>
+            <div id="fontResults" class="font-list"></div>
+        </section>
+
+        <section class="tool-card animate-fade">
+            <div class="card-badge">EASY SEO</div>
+            <h2><i class="fa-solid fa-qrcode"></i> Smart QR Code Generator</h2>
+            <p class="tool-desc">Enter any Website URL or Text to generate a high-quality copy-paste QR Code.</p>
+            <input type="text" id="qrText" placeholder="Paste your link or channel URL here...">
+            <button class="btn" onclick="generateQRCode()"><i class="fa-solid fa-gear"></i> Create QR Code</button>
+            <div id="qrcode" style="display: flex; justify-content: center; margin-top: 20px; background: white; padding: 15px; border-radius: 10px; width: fit-content; margin-left: auto; margin-right: auto;" class="hidden"></div>
+        </section>
+
+        <section class="tool-card animate-fade">
+            <div class="card-badge">VIRAL</div>
+            <h2><i class="fa-solid fa-bolt"></i> AI Viral Reels Hashtag Toolkit</h2>
+            <p class="tool-desc">Boost your short videos, montages, and reels on Instagram algorithms.</p>
+            <div class="hashtag-box">
+                <p id="hashText">#gaming #freefire #minecraft #editing #graphicdesign #explorepage #viralreels #trending #foryou #creator #coding #reelsvideo #hustle</p>
+                <button class="btn btn-secondary" onclick="copyText(document.getElementById('hashText').innerText)"><i class="fa-solid fa-hashtag"></i> Copy All Tags</button>
+            </div>
         </section>
 
     </div>
 
+    <div id="toast" class="toast hidden">Copied Successfully! 🚀</div>
+
     <footer>
-        <p>&copy; 2026 Nexus Tools Hub. Designed for Gamers & Creators.</p>
+        <p>&copy; 2026 Nexus Hub | Optimized for Ultimate Search Traffic</p>
     </footer>
 
     <script>
-        // 1. Free Fire Sensitivity Logic
+        // FF Sensitivity Logic
         function generateSensitivity() {
             let brand = document.getElementById("deviceBrand").value;
             let resultDiv = document.getElementById("sensiResult");
-            
-            if(!brand) {
-                alert("Please select your mobile brand first!");
-                return;
-            }
-
+            if(!brand) { showToast("Please select a device!"); return; }
             resultDiv.classList.remove("hidden");
-
-            if(brand === "redmi") {
-                setSensi(98, 92, 95, 88);
-            } else if(brand === "realme") {
-                setSensi(100, 95, 92, 90);
-            } else if(brand === "samsung") {
-                setSensi(95, 88, 85, 80);
-            } else if(brand === "iphone") {
-                setSensi(90, 85, 88, 82);
-            } else {
-                setSensi(100, 100, 95, 95); // Low-end devices
-            }
+            if(brand === "redmi") setSensi(99, 94, 96, 89);
+            else if(brand === "realme") setSensi(100, 97, 94, 91);
+            else if(brand === "samsung") setSensi(96, 89, 87, 82);
+            else if(brand === "iphone") setSensi(92, 88, 90, 85);
+            else setSensi(100, 100, 98, 98);
         }
-
         function setSensi(g, r, t, f) {
-            document.getElementById("genVal").innerText = g;
-            document.getElementById("redVal").innerText = r;
-            document.getElementById("twoVal").innerText = t;
-            document.getElementById("fourVal").innerText = f;
+            document.getElementById("genVal").innerText = g + "%";
+            document.getElementById("redVal").innerText = r + "%";
+            document.getElementById("twoVal").innerText = t + "%";
+            document.getElementById("fourVal").innerText = f + "%";
         }
 
-        // 2. Stylish Font Logic
+        // Font Generator Logic
         function generateFonts() {
             let txt = document.getElementById("nameInput").value;
             let container = document.getElementById("fontResults");
             container.innerHTML = "";
-
             if(txt.trim() === "") return;
-
-            // Different stylized font arrays
-            let styles = [
-                `꧁༺ ${txt} ༻꧂`,
-                `🅵🅾🅽🆃: ${txt}`,
-                ` 𝔗𝔥𝔢  King: ${txt}`,
-                `☠️🔥 ${txt} 🔥☠️`,
-                `ⓃⒾⒸⓀ: ${txt}`,
-                `★彡 [${txt}] 彡★`,
-                `⚡ ${txt} ⚡`
-            ];
-
+            let styles = [`꧁༺ ${txt} ༻꧂`, `🅵🅾🅽🆃: ${txt}`, `⚔️ 𝔗𝔔𝔈 𝔎𝔍𝔑𝔊: ${txt} ⚔️`, `☠️🔥 ${txt}_𝓝𝓔𝓧𝓤𝓢 🔥☠️`, `★彡 [${txt}] 彡★`];
             styles.forEach(style => {
-                let div = document.createElement("div");
-                div.className = "font-item";
-                div.innerHTML = `<span>${style}</span> <button class="copy-btn" onclick="copyText('${style}')">Copy</button>`;
+                let div = document.createElement("div"); div.className = "font-item";
+                div.innerHTML = `<span>${style}</span> <button class="copy-btn-mini" onclick="copyText('${style}')"><i class="fa-regular fa-copy"></i></button>`;
                 container.appendChild(div);
             });
         }
 
+        // AI Title Generator Logic
+        function generateTitles() {
+            let topic = document.getElementById("topicInput").value;
+            let container = document.getElementById("titleResults");
+            container.innerHTML = "";
+            if(topic.trim() === "") { showToast("Enter a topic first!"); return; }
+            let titles = [
+                `I Tried ${topic} for 100 Days! (Shocking Result)`,
+                `The Secret 2026 Method for ${topic} 🤫`,
+                `Don't Do THIS While Making ${topic}!`,
+                `How to Master ${topic} Fast (Zero to Hero Guide)`,
+                `Unlocking Ultimate ${topic} - World Record! 🔥`
+            ];
+            titles.forEach(t => {
+                let div = document.createElement("div"); div.className = "font-item";
+                div.innerHTML = `<span>${t}</span> <button class="copy-btn-mini" onclick="copyText('${t}')"><i class="fa-regular fa-copy"></i></button>`;
+                container.appendChild(div);
+            });
+        }
+
+        // PNG Converter Logic
+        function processImage() {
+            let fileInput = document.getElementById("imageInput");
+            if(fileInput.files.length === 0) { showToast("Please upload an image!"); return; }
+            let file = fileInput.files[0];
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                let img = new Image();
+                img.onload = function() {
+                    let canvas = document.createElement("canvas");
+                    canvas.width = img.width; canvas.height = img.height;
+                    let ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0);
+                    let pngUrl = canvas.toDataURL("image/png");
+                    
+                    document.getElementById("imagePreview").src = pngUrl;
+                    document.getElementById("imagePreviewContainer").classList.remove("hidden");
+
+                    let link = document.createElement("a");
+                    link.download = "nexus-converted.png"; link.href = pngUrl;
+                    link.click();
+                    showToast("PNG Converted & Downloaded! 🖼️");
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        // QR Code Generator Logic
+        function generateQRCode() {
+            let qrText = document.getElementById("qrText").value;
+            let container = document.getElementById("qrcode");
+            container.innerHTML = "";
+            if(qrText.trim() === "") { showToast("Enter Text or URL!"); return; }
+            container.classList.remove("hidden");
+            new QRCode(container, { text: qrText, width: 128, height: 128 });
+            showToast("QR Code Generated! 🎉");
+        }
+
+        // Universal Copy and Toast Logic
         function copyText(text) {
             navigator.clipboard.writeText(text);
-            alert("Copied to clipboard: " + text);
+            showToast("Copied to Clipboard! 🔥");
+        }
+        function showToast(msg) {
+            let toast = document.getElementById("toast"); toast.innerText = msg;
+            toast.classList.remove("hidden");
+            setTimeout(() => { toast.classList.add("hidden"); }, 2500);
         }
     </script>
 </body>
-</html>
+                    </html>
+                    
